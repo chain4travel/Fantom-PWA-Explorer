@@ -52,7 +52,7 @@ const httpLink = new HttpLink({
 });
 
 const wsLink = new WebSocketLink({
-    uri: 'wss://xapi8.fantom.network/graphql',
+    uri: appConfig.apollo.providers[0].ws,
     options: {
         reconnect: true,
     },

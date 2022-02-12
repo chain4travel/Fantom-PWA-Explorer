@@ -66,10 +66,6 @@
         {
             "url": "/contracts",
             "title": "Contracts"
-        },
-        {
-            "url": "https://pwawallet.fantom.network/#/",
-            "title": "Wallet"
         }
     ],
 
@@ -191,7 +187,7 @@
         "hash": "@:hash",
         "market_cap": "Market Cap",
         "symbol": "Symbol",
-        "fantom_finance_assets": "Fantom Finance Assets",
+        "globe_finance_assets": "Finance Assets",
         "all_erc20_tokens": "All ERC20 Tokens"
     },
     "view_validators_info": {

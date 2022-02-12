@@ -1,3 +1,5 @@
+import appConfig from "../app.config.js";
+
 let ws;
 
 function onOpen() {
@@ -18,8 +20,7 @@ function onError2(evt) {
 }
 
 export function initWSTest() {
-    // ws = new WebSocket('wss://echo.websocket.org');
-    ws = new WebSocket('wss://xapi6.fantom.network/graphql');
+    ws = new WebSocket(appConfig.apollo.providers[0].ws);
 
     ws.onopen = function(evt) { onOpen(evt) };
     ws.onclose = function(evt) { onClose(evt) };

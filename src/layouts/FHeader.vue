@@ -3,7 +3,7 @@
         <div class="narrow-container">
             <div class="row no-collapse align-items-center">
                 <div class="col-2">
-                    <router-link to="/" class="logo" :aria-label="$t('view_home.back_to_home')"><img src="/fantom-logo.svg" alt="" class="not-fluid"></router-link>
+                    <router-link to="/" class="logo" :aria-label="$t('view_home.back_to_home')"><img src="/globe-logo.png" alt="" class="not-fluid"></router-link>
                 </div>
                 <div class="col right-col">
                     <f-navigation
@@ -26,7 +26,7 @@
             <div class="footer">
                 <f-social-media-links></f-social-media-links>
                 <div class="copyright">
-                    <a href="https://fantom.foundation/" target="_blank" rel="nofollow">©2020 Fantom Foundation</a>
+                    <a href="https://chain4travel.com/" target="_blank" rel="nofollow">©2022 Chain4Travel AG</a>
                 </div>
             </div>
         </div>

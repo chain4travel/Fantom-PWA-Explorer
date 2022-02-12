@@ -1,6 +1,6 @@
-# Fantom PWA Explorer
+# Globe PWA Explorer
 
-JavaScript and Vue based Fantom pwa explorer.
+JavaScript and Vue based Globe pwa explorer.
 
 We are using:
 * Node / NPM

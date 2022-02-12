@@ -8,7 +8,7 @@ const vuexPlugins = [];
 
 const vuexLocalStorage = new VuexPersist({
     // The key to store the state on in the storage provider.
-    key: 'vuex-fantom-explorer',
+    key: 'vuex-globe-explorer',
     storage: window.localStorage,
     asyncStorage: false,
     // Function that passes the state and returns the state with only the Objects you want to store.

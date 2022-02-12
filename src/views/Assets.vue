@@ -8,7 +8,7 @@
         <f-tabs>
             <template #assets>
                 <h2>
-                    {{ $t('view_assets.fantom_finance_assets') }}
+                    {{ $t('view_assets.globe_finance_assets') }}
                     <span class="f-records-count">({{ assetsRecordsCount }})</span>
                 </h2>
             </template>
