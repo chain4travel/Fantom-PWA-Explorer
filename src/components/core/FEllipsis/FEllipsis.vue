@@ -1,5 +1,5 @@
 <template>
-    <span class="f-ellipsis" :class="cssClass">
+    <span class="f-ellipsis mono" :class="cssClass">
         <span><slot name="prefix"></slot></span>
 
         <template v-if="overflow === 'middle'">

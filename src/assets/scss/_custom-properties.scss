@@ -10,6 +10,11 @@
     //--f-icon-stroke-color: var(--f-doc-background-color);
     //--f-icon-fill-color: var(--f-doc-background-color);
 
+    .mono {
+        font-family: #{$font-family-mono};
+        font-weight: 500;
+    }
+
     .toggle-btn {
         --f-toggle-btn-border: 1px solid transparent;
         --f-toggle-btn-checked-border: 1px solid transparent;
