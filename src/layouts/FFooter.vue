@@ -6,7 +6,7 @@
                 <div class="col align-center-sm align-end">
                     <div style="line-height: 1;">
                         <a style="display: block;" href="https://chain4travel.com/" target="_blank" rel="nofollow">©2022 Chain4Travel AG</a>
-                        <a style="font-size: 10px" href="ttps://github.com/chain4travel/Fantom-PWA-Explorer" target="_blank" rel="nofollow">Build on Fantom PWA Explorer</a>
+                        <a style="font-size: 10px" href="ttps://github.com/chain4travel/Fantom-PWA-Explorer" target="_blank" rel="nofollow">Powered by Fantom PWA Explorer</a>
                     </div>
                 </div>
             </div>

@@ -75,7 +75,7 @@
                 `,
 
                 result(_data) {
-                    const gasPrice = parseInt(_data.data.gasPrice);
+                    const gasPrice = parseInt(_data.data.gasPrice || "0");
 
                     if (gasPrice) {
                         this.$store.commit('setGasPrice', gasPrice);
