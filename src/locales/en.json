@@ -37,6 +37,7 @@
     "asset": "Asset",
     "token": "Token",
     "token_id": "Token Id",
+    "logs": "Logs",
 
     "navigation": [
         {
@@ -107,6 +108,7 @@
         "status": "Status",
         "from": "@:from",
         "to": "@:to",
+        "contract": "@:contract",
         "time": "@:time",
         "amount": "@:amount",
         "fee": "@:fee",
@@ -116,7 +118,8 @@
         "gas_price": "Gas Price",
         "transaction_fee": "Transaction Fee",
         "input_data": "Input Data",
-        "nonce": "Nonce"
+        "nonce": "Nonce",
+        "logs": "@:logs"
     },
     "view_address_detail": {
         "title": "Address",

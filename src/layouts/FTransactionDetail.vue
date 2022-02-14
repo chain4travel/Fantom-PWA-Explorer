@@ -32,6 +32,16 @@
                             </div>
                         </div>
                     </div>
+                    <template v-if="cTransaction.contractAddress">
+                        <div class="row no-collapse">
+                            <div class="col-4 f-row-label">{{ $t('view_transaction_detail.contract') }}</div>
+                            <div class="col">
+                                <div class="break-word" v-show="cTransaction">
+                                    <router-link :to="{name: 'address-detail', params: {id: cTransaction.contractAddress}}">{{ cTransaction.contractAddress }}</router-link>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
                     <div class="row no-collapse">
                         <div class="col-4 f-row-label">{{ $t('view_transaction_detail.time') }}</div>
                         <div class="col">
@@ -81,30 +91,63 @@
                         <div class="col-4 f-row-label">{{ $t('view_transaction_detail.transaction_fee') }}</div>
                         <div class="col"><div class="break-word" v-show="cTransaction">{{  cTransactionFee }} FTM</div></div>
                     </div>
-                    <div class="row no-collapse">
-                        <div class="col-4 f-row-label">{{ $t('view_transaction_detail.input_data') }}</div>
-                        <div class="col"><div class="break-word input-data" v-show="cTransaction">{{  encodeURIComponent(cTransaction.inputData) }}</div></div>
-                    </div>
                 </template>
             </template>
             <template v-else>
                 <div class="query-error">{{ $t('view_transaction_detail.transaction_not_found') }}</div>
             </template>
         </f-card>
+
+
+        <f-tabs aria-label="Transaction Tabs">
+            <template #logs>
+                <h2>
+                    {{ $t("view_transaction_detail.logs") }}
+                    <span class="f-records-count">({{ 0 }})</span>
+                </h2>
+            </template>
+            <template #byteCode>
+                <h2>{{ $t("view_transaction_detail.input_data") }}</h2>
+            </template>
+
+            <f-tab title-slot="logs">
+            </f-tab>
+            <f-tab title-slot="byteCode">
+                <f-card>
+                    <div class="source-code">
+                        <div>
+                            <pre class="break">{{ encodeURIComponent(cTransaction.inputData) }}</pre>
+                        </div>
+                        <f-copy-button
+                            :text="cTransaction.inputData"
+                            :tooltip="$t('copy_to_clipboard', {what: $t('view_transaction_detail.input_data')})"
+                            :popoverText="$t('copied_to_clipboard', {what: $t('view_transaction_detail.input_data')})"
+                            class="btn light large same-size round"
+                        />
+                    </div>
+                </f-card>
+            </f-tab>
+        </f-tabs>
     </div>
 </template>
 
 <script>
     import FCard from "../components/core/FCard/FCard.vue";
+    import FTabs from "../components/core/FTabs/FTabs.vue";
+    import FTab from "../components/core/FTabs/FTab.vue";
     import gql from 'graphql-tag';
     import { WEIToFTM } from "../utils/transactions.js";
     import { formatHexToInt, timestampToDate, formatDate } from "../filters.js";
     import FTransactionStatus from "../components/FTransactionStatus.vue";
+    import FCopyButton from "../components/core/FCopyButton/FCopyButton.vue";
 
     export default {
         components: {
             FTransactionStatus,
-            FCard
+            FCard,
+            FTab,
+            FTabs,
+            FCopyButton
         },
 
         props: {
@@ -132,6 +175,7 @@
                             gasPrice
                             inputData
                             status
+                            contractAddress
                             block {
                                 hash
                                 number
@@ -198,3 +242,36 @@
         }
     }
 </script>
+
+<style lang="scss">
+    .f-transaction-detail {
+        .source-code {
+            position: relative;
+            width: 100%;
+
+            > div {
+                width: 100%;
+                overflow-x: auto;
+            }
+
+            pre {
+                width: 100%;
+                min-width: 800px;
+                padding: 40px 16px 16px 16px;
+                background-color: #f6f6f6;
+                white-space: pre-wrap;
+
+                &.break {
+                    word-wrap: break-word;
+                    /*white-space: pre-line;*/
+                }
+            }
+
+            .f-copy-button {
+                position: absolute;
+                top: 8px;
+                right: 8px;
+            }
+        }
+    }
+</style>
