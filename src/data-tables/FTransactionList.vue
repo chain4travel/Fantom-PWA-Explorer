@@ -35,7 +35,9 @@
                         </div>
                     </div>
                     <template v-else>
-                        <router-link :to="{name: 'transaction-detail', params: {id: value}}" :title="value">{{ value | formatHash }}</router-link>
+                        <div class="mono">
+                            <router-link :to="{name: 'transaction-detail', params: {id: value}}" :title="value">{{ value | formatHash }}</router-link>
+                        </div>
                     </template>
                 </template>
 
