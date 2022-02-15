@@ -104,6 +104,7 @@ import FCryptoSymbol from '../components/core/FCryptoSymbol/FCryptoSymbol.vue';
 import { stringSort } from '../utils/array-sorting.js';
 import {MAX_TOKEN_DECIMALS_IN_TABLES} from "../plugins/defi/defi.js";
 import FTokenValue from "@/components/core/FTokenValue/FTokenValue.vue";
+import { USD_TOKEN, WRAPPED_NATIVE_TOKEN } from '@/utils/transactions.js';
 
 export default {
     name: 'AddressAssetList',
@@ -197,7 +198,7 @@ export default {
          * @param {DefiToken[]} _value
          */
         tokens(_value) {
-            // this.items = _value.filter((_item) => _item.isActive && _item.canDeposit && _item.symbol !== 'FTM');
+            // this.items = _value.filter((_item) => _item.isActive && _item.canDeposit && _item.symbol !== NATIVE_TOKEN);
             this.prepareTokens(_value);
 
             this.items = _value.filter(
@@ -258,7 +259,7 @@ export default {
          * @return {boolean}
          */
         usedInFMint(_token) {
-            return _token.symbol === 'WFTM' || _token.symbol === 'FUSD';
+            return _token.symbol === WRAPPED_NATIVE_TOKEN || _token.symbol === USD_TOKEN;
         },
     },
 };

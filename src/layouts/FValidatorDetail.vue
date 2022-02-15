@@ -8,7 +8,7 @@
                         <div v-show="cStakerName">
                             <div class="validator-img">
                                 <img v-if="cStakerLogoUrl"  :src="cStakerLogoUrl" :alt="cStakerName" class="not-fluid">
-                                <img v-else src="/img/globe-logo.png" alt="globe logo" class="not-fluid">
+                                <img v-else src="/img/camino-logo.png" alt="camino logo" class="not-fluid">
                             </div>
 
                             {{ cStakerName }}
@@ -60,7 +60,7 @@
                     <div class="col-4 f-row-label">{{ $t('view_validator_detail.amount_staked') }}</div>
                     <div class="col">
                         <div v-show="'stake' in cStaker">
-                            {{ formatNumberByLocale(numToFixed(WEIToFTM(cStaker.stake), 0)) }} FTM
+                            {{ formatNumberByLocale(numToFixed(WEIToNative(cStaker.stake), 0)) }} {{NATIVE}}
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                     <div class="col-4 f-row-label">{{ $t('view_validator_detail.amount_delegated') }}</div>
                     <div class="col">
                         <div v-show="'delegatedMe' in cStaker">
-                            {{ formatNumberByLocale(numToFixed(WEIToFTM(cStaker.delegatedMe), 0)) }} FTM
+                            {{ formatNumberByLocale(numToFixed(WEIToNative(cStaker.delegatedMe), 0)) }} {{NATIVE}}
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                     <div class="col-4 f-row-label">{{ $t('view_validator_detail.staking_total') }}</div>
                     <div class="col">
                         <div v-show="'totalStake' in cStaker">
-                            {{ formatNumberByLocale(numToFixed(WEIToFTM(cStaker.totalStake), 0)) }} FTM
+                            {{ formatNumberByLocale(numToFixed(WEIToNative(cStaker.totalStake), 0)) }} {{NATIVE}}
                         </div>
                     </div>
                 </div>
@@ -156,7 +156,7 @@
         formatDate,
         prepareTimestamp
     } from "../filters.js";
-    import { WEIToFTM } from "../utils/transactions.js";
+    import { NATIVE_TOKEN, WEIToNative } from "../utils/transactions.js";
     import FDelegationList from "../data-tables/FDelegationList.vue";
     import FYesNo from "../components/FYesNo.vue";
 
@@ -223,7 +223,8 @@
         data() {
             return {
                 dDelegationListRecordsCount: 0,
-                dStakerByAddressError: ''
+                dStakerByAddressError: '',
+                NATIVE: NATIVE_TOKEN,
             }
         },
 
@@ -278,7 +279,7 @@
                 this.dDelegationListRecordsCount = _num;
             },
 
-            WEIToFTM,
+            WEIToNative,
             timestampToDate,
             formatDate,
             formatHexToInt,

@@ -9,28 +9,28 @@
                         <div class="row no-collapse">
                             <div class="col-5 f-row-label">{{ $t('view_validators_info.total_self_staked') }}</div>
                             <div class="col">
-                                <div v-show="'fSelfStaked' in dTotals">{{ dTotals.fSelfStaked }} FTM <span v-if="cSelfStaked">({{ cSelfStaked }}%)</span></div>
+                                <div v-show="'fSelfStaked' in dTotals">{{ dTotals.fSelfStaked }} {{NATIVE}} <span v-if="cSelfStaked">({{ cSelfStaked }}%)</span></div>
                             </div>
                         </div>
 
                         <div class="row no-collapse">
                             <div class="col-5 f-row-label">{{ $t('view_validators_info.total_delegated') }}</div>
                             <div class="col">
-                                <div v-show="'fTotalDelegated' in dTotals">{{ dTotals.fTotalDelegated }} FTM <span v-if="cDelegated">({{ cDelegated }}%)</span></div>
+                                <div v-show="'fTotalDelegated' in dTotals">{{ dTotals.fTotalDelegated }} {{NATIVE}} <span v-if="cDelegated">({{ cDelegated }}%)</span></div>
                             </div>
                         </div>
 
                         <div class="row no-collapse">
                             <div class="col-5 f-row-label">{{ $t('view_validators_info.total_staked') }}</div>
                             <div class="col">
-                                <div v-show="'fTotalStaked' in dTotals">{{ dTotals.fTotalStaked }} FTM <span v-if="cStaked">({{ cStaked }}%)</span></div>
+                                <div v-show="'fTotalStaked' in dTotals">{{ dTotals.fTotalStaked }} {{NATIVE}} <span v-if="cStaked">({{ cStaked }}%)</span></div>
                             </div>
                         </div>
 
                         <div class="row no-collapse">
                             <div class="col-5 f-row-label">{{ $t('view_validators_info.daily_rewards') }}</div>
                             <div class="col">
-                                <div v-show="cDailyRewards">{{ formatNumberByLocale(numToFixed(cDailyRewards, 0)) }} FTM</div>
+                                <div v-show="cDailyRewards">{{ formatNumberByLocale(numToFixed(cDailyRewards, 0)) }} {{NATIVE}}</div>
                             </div>
                         </div>
 
@@ -76,14 +76,14 @@
                         <div class="row no-collapse">
                             <div class="col-5 f-row-label">{{ $t('view_validators_info.fee') }}</div>
                             <div class="col">
-                                <div v-show="'epochFee' in cEpoch">{{  WEIToFTM(cEpoch.epochFee) }} FTM</div>
+                                <div v-show="'epochFee' in cEpoch">{{  WEIToNative(cEpoch.epochFee) }} {{NATIVE}}</div>
                             </div>
                         </div>
 
                         <div class="row no-collapse">
                             <div class="col-5 f-row-label">{{ $t('view_validators_info.total_supply') }}</div>
                             <div class="col">
-                                <div v-show="dTotalSupply">{{ formatNumberByLocale(numToFixed(dTotalSupply, 0)) }} FTM</div>
+                                <div v-show="dTotalSupply">{{ formatNumberByLocale(numToFixed(dTotalSupply, 0)) }} {{NATIVE}}</div>
                             </div>
                         </div>
                     </f-card>
@@ -130,7 +130,7 @@
 
 <script>
     import gql from 'graphql-tag';
-    import { WEIToFTM } from "../utils/transactions.js";
+    import { NATIVE_TOKEN, WEIToNative } from "../utils/transactions.js";
     import FCard from "../components/core/FCard/FCard.vue";
     import FValidatorList from "../data-tables/FValidatorList.vue";
     import {formatHexToInt, formatNumberByLocale, numToFixed, timestampToDate} from "../filters.js";
@@ -199,7 +199,7 @@
                     }
                 },
                 result(_data) {
-                    this.dTotalSupply = WEIToFTM(_data.data.epoch.totalSupply);
+                    this.dTotalSupply = WEIToNative(_data.data.epoch.totalSupply);
                 },
                 error(_error) {
                     this.dValidatorsInfoError = _error.message;
@@ -216,7 +216,8 @@
                 dValidatorsInfoError: '',
                 dTotals: {},
                 dTotalSupply: 0,
-                dRecordsCount: 0
+                dRecordsCount: 0,
+                NATIVE: NATIVE_TOKEN,
             }
         },
 
@@ -253,7 +254,7 @@
                 const {epoch} = this;
 
                 if (epoch && epoch.baseRewardPerSecond) {
-                    return WEIToFTM(epoch.baseRewardPerSecond) * 86400;
+                    return WEIToNative(epoch.baseRewardPerSecond) * 86400;
                 }
 
                 return 0;
@@ -301,7 +302,7 @@
                 this.dInactiveItems = _inactive;
             },
 
-            WEIToFTM,
+            WEIToNative,
             timestampToDate,
             formatHexToInt,
             formatNumberByLocale,

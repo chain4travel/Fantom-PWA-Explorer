@@ -53,12 +53,12 @@
                     </div>
                     <div class="row no-collapse">
                         <div class="col-4 f-row-label">{{ $t('view_transaction_detail.amount') }}</div>
-                        <div class="col"><div class="break-word" v-show="cTransaction">{{  WEIToFTM(cTransaction.value) }} FTM</div></div>
+                        <div class="col"><div class="break-word" v-show="cTransaction">{{  WEIToNative(cTransaction.value) }} {{NATIVE}}</div></div>
                     </div>
                     <!--
                                 <div class="row no-collapse">
                                     <div class="col-4 f-row-label">{{ $t('view_transaction_detail.fee') }}</div>
-                                    <div class="col"><div class="break-word" v-show="cTransaction">{{  WEIToFTM(cTransaction.fee) }} FTM</div></div>
+                                    <div class="col"><div class="break-word" v-show="cTransaction">{{  WEIToNative(cTransaction.fee) }} {{NATIVE}}</div></div>
                                 </div>
                     -->
                     <div class="row no-collapse">
@@ -89,7 +89,7 @@
                     </div>
                     <div class="row no-collapse">
                         <div class="col-4 f-row-label">{{ $t('view_transaction_detail.transaction_fee') }}</div>
-                        <div class="col"><div class="break-word" v-show="cTransaction">{{  cTransactionFee }} FTM</div></div>
+                        <div class="col"><div class="break-word" v-show="cTransaction">{{  cTransactionFee }} {{NATIVE}}</div></div>
                     </div>
                 </template>
             </template>
@@ -136,7 +136,7 @@
     import FTabs from "../components/core/FTabs/FTabs.vue";
     import FTab from "../components/core/FTabs/FTab.vue";
     import gql from 'graphql-tag';
-    import { WEIToFTM } from "../utils/transactions.js";
+    import { NATIVE_TOKEN, WEIToNative } from "../utils/transactions.js";
     import { formatHexToInt, timestampToDate, formatDate } from "../filters.js";
     import FTransactionStatus from "../components/FTransactionStatus.vue";
     import FCopyButton from "../components/core/FCopyButton/FCopyButton.vue";
@@ -197,7 +197,8 @@
 
         data() {
             return {
-                dTransactionByHashError: ''
+                dTransactionByHashError: '',
+                NATIVE: NATIVE_TOKEN,
             }
         },
 
@@ -210,7 +211,7 @@
                 const {transaction} = this;
 
                 if (transaction) {
-                    return WEIToFTM(this.formatHexToInt(transaction.gasPrice) * this.formatHexToInt(transaction.gasUsed));
+                    return WEIToNative(this.formatHexToInt(transaction.gasPrice) * this.formatHexToInt(transaction.gasUsed));
                 }
 
                 return 0;
@@ -235,7 +236,7 @@
         },
 
         methods: {
-            WEIToFTM,
+            WEIToNative,
             formatHexToInt,
             timestampToDate,
             formatDate,

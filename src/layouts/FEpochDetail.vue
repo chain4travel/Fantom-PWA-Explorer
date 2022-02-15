@@ -16,7 +16,7 @@
                     <div class="col-4 f-row-label">{{ $t('epoch.total_base_reward') }}</div>
                     <div class="col">
                         <div class="break-word">
-                            <f-t-m-token-value :value="cEpoch.totalBaseRewardWeight" convert />
+                            <native-token-value :value="cEpoch.totalBaseRewardWeight" convert />
                         </div>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                     <div class="col-4 f-row-label">{{ $t('epoch.total_fee') }}</div>
                     <div class="col">
                         <div class="break-word">
-                            <f-t-m-token-value :value="cEpoch.epochFee" convert />
+                            <native-token-value :value="cEpoch.epochFee" convert />
                         </div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                     <div class="col-4 f-row-label">{{ $t('epoch.total_tx_reward') }}</div>
                     <div class="col">
                         <div class="break-word">
-                            <f-t-m-token-value :value="cEpoch.totalTxRewardWeight" convert />
+                            <native-token-value :value="cEpoch.totalTxRewardWeight" convert />
                         </div>
                     </div>
                 </div>
@@ -49,11 +49,11 @@
 import FCard from "../components/core/FCard/FCard.vue";
 import gql from 'graphql-tag';
 import {timestampToDate, formatDate } from "../filters.js";
-import FTMTokenValue from "@/components/core/FTMTokenValue/FTMTokenValue.vue";
+import NativeTokenValue from "@/components/core/NativeTokenValue/NativeTokenValue.vue";
 
 export default {
     components: {
-        FTMTokenValue,
+        NativeTokenValue,
         FCard
     },
 

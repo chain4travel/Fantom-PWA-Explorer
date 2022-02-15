@@ -5,7 +5,7 @@ const appConfig = {
     description:
         "Globe Explorer allows you to explore and search the Globe blockchain for transactions, addresses and blocks",
     // app keywords
-    keywords: "globe, explorer, search, blockchain, crypto, currency",
+    keywords: "camino, explorer, search, blockchain, crypto, currency",
     // apollo client settings
     apollo: {
         // list of providers. if one of them is unavailable, another is randomly picked

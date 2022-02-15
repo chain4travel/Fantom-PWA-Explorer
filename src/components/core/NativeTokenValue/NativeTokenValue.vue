@@ -1,5 +1,5 @@
 <template>
-    <span class="ftmtokenvalue">
+    <span class="nativetokenvalue">
         <f-token-value
             :value="cValue"
             :decimals="decimals"
@@ -8,16 +8,16 @@
             no-currency
             v-bind="$attrs"
         />
-        <span v-if="!noCurrency"> FTM</span>
+        <span v-if="!noCurrency"> {{NATIVE}}</span>
     </span>
 </template>
 
 <script>
 import FTokenValue from '@/components/core/FTokenValue/FTokenValue.vue';
-import { WEIToFTM } from '@/utils/transactions.js';
+import { NATIVE_TOKEN, WEIToNative } from '@/utils/transactions.js';
 
 export default {
-    name: 'FTMTokenValue',
+    name: 'NativeTokenValue',
 
     components: { FTokenValue },
 
@@ -30,7 +30,7 @@ export default {
             type: Number,
             default: 2,
         },
-        /** Convert value to FTM */
+        /** Convert value to native */
         convert: {
             type: Boolean,
             default: false,
@@ -47,8 +47,12 @@ export default {
 
     computed: {
         cValue() {
-            return this.convert ? WEIToFTM(this.value) : this.value;
+            return this.convert ? WEIToNative(this.value) : this.value;
         },
     },
+
+    data: {
+        NATIVE: NATIVE_TOKEN,
+    }
 };
 </script>

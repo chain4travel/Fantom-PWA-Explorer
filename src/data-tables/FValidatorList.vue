@@ -16,14 +16,14 @@
                         <div class="col break-word">
                             <div class="validator-img">
                                 <img v-if="value"  :src="value" :alt="item.stakerInfo.name" class="not-fluid">
-                                <img v-else src="/img/globe-logo.png" alt="globe logo" class="not-fluid">
+                                <img v-else src="/img/camino-logo.png" alt="camino logo" class="not-fluid">
                             </div>
                         </div>
                     </div>
                     <template v-else>
                         <div class="validator-img">
                             <img v-if="value"  :src="value" :alt="item.stakerInfo.name" class="not-fluid">
-                            <img v-else src="/img/globe-logo.png" alt="globe logo" class="not-fluid">
+                            <img v-else src="/img/camino-logo.png" alt="camino logo" class="not-fluid">
                         </div>
                     </template>
                 </template>
@@ -92,7 +92,7 @@
 <script>
     import FDataTable from "../components/core/FDataTable/FDataTable.vue";
     import gql from 'graphql-tag';
-    import { WEIToFTM } from "../utils/transactions.js";
+    import { WEIToNative } from "../utils/transactions.js";
     import {formatHexToInt, timestampToDate, numToFixed, formatNumberByLocale, clampDowntime} from "../filters.js";
     import {sortByHex, sortByLocaleString, sortByString} from "../utils/array-sorting.js";
     import {cloneObject} from "@/utils";
@@ -158,10 +158,10 @@
                         data = [..._data.data.stakers];
 
                         data.forEach((_item, _idx) => {
-                            // _item.total_staked = WEIToFTM(_item.stake) + WEIToFTM(_item.delegatedMe);
-                            totals.selfStaked += parseFloat(numToFixed(WEIToFTM(_item.stake), 0));
-                            totals.totalDelegated += parseFloat(numToFixed(WEIToFTM(_item.delegatedMe), 0));
-                            totals.totalStaked += parseFloat(numToFixed(WEIToFTM(_item.totalStake), 0));
+                            // _item.total_staked = WEIToNative(_item.stake) + WEIToNative(_item.delegatedMe);
+                            totals.selfStaked += parseFloat(numToFixed(WEIToNative(_item.stake), 0));
+                            totals.totalDelegated += parseFloat(numToFixed(WEIToNative(_item.delegatedMe), 0));
+                            totals.totalStaked += parseFloat(numToFixed(WEIToNative(_item.totalStake), 0));
 
                             if (!_item.stakerInfo) {
                                 _item.stakerInfo = {};
@@ -282,14 +282,14 @@
                     {
                         name: 'stake',
                         label: this.$t('view_validator_list.self_staked'),
-                        formatter: _value => formatNumberByLocale(numToFixed(WEIToFTM(_value), 0), 0),
+                        formatter: _value => formatNumberByLocale(numToFixed(WEIToNative(_value), 0), 0),
                         sortFunc: sortByHex,
                         cssClass: 'align-end',
                     },
                     {
                         name: 'delegatedMe',
                         label: this.$t('view_validator_list.delegated'),
-                        formatter: _value => formatNumberByLocale(numToFixed(WEIToFTM(_value), 0), 0),
+                        formatter: _value => formatNumberByLocale(numToFixed(WEIToNative(_value), 0), 0),
                         sortFunc: sortByHex,
                         cssClass: 'align-end',
                     },
@@ -297,7 +297,7 @@
                     {
                         name: 'totalStake',
                         label: this.$t('view_validator_list.total_staked'),
-                        formatter: _value => formatNumberByLocale(numToFixed(WEIToFTM(_value), 0), 0),
+                        formatter: _value => formatNumberByLocale(numToFixed(WEIToNative(_value), 0), 0),
                         sortFunc: sortByHex,
                         sortDir: 'desc',
                         cssClass: 'align-end',
@@ -344,7 +344,7 @@
                 })
             },
 
-            WEIToFTM,
+            WEIToNative,
             timestampToDate,
             numToFixed,
             clampDowntime,

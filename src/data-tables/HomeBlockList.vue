@@ -45,7 +45,7 @@
 <script>
 import FBlockList from "@/data-tables/FBlockList.vue";
 import FDataTable from "@/components/core/FDataTable/FDataTable.vue";
-import {WEIToFTM} from "@/utils/transactions.js";
+import {WEIToNative} from "@/utils/transactions.js";
 import {timestampToDate} from "@/filters.js";
 import gql from "graphql-tag";
 import {cloneObject} from "@/utils";
@@ -138,7 +138,7 @@ export default {
             return cloneObject(data.data && data.data.blocks && data.data.blocks.edges ? data.data.blocks.edges : []);
         },
 
-        WEIToFTM,
+        WEIToNative,
         timestampToDate
     }
 }

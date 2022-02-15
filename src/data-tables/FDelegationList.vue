@@ -57,7 +57,7 @@
 <script>
     import FDataTable from "../components/core/FDataTable/FDataTable.vue";
     import gql from 'graphql-tag';
-    import { WEIToFTM } from "../utils/transactions.js";
+    import { WEIToNative } from "../utils/transactions.js";
     import {formatHexToInt, timestampToDate, formatNumberByLocale, numToFixed, formatDate} from "../filters.js";
     import {cloneObject} from "@/utils";
     import FTokenValue from "@/components/core/FTokenValue/FTokenValue.vue";
@@ -168,7 +168,7 @@
                         name: 'amount',
                         label: this.$t('delegation_list_dt.amount'),
                         itemProp: 'delegation.amount',
-                        formatter: _value => WEIToFTM(_value),
+                        formatter: _value => WEIToNative(_value),
                         cssClass: 'align-end',
                     }
                 ]
@@ -227,7 +227,7 @@
                 }
             },
 
-            WEIToFTM,
+            WEIToNative,
             timestampToDate,
             formatHexToInt,
             formatNumberByLocale,

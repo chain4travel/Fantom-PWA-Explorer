@@ -14,11 +14,11 @@
                     <div class="balance center-v">
                         <h3 class="h1">
                             <span v-show="cAccount">
-                                <f-t-m-token-value :value="cAccount ? cAccount.totalValue : 1" convert no-currency /> <span class="ftm">FTM</span>
+                                <native-token-value :value="cAccount ? cAccount.totalValue : 1" convert no-currency /> <span class="cam">{{NATIVE}}</span>
                             </span>
                         </h3>
                         <div v-show="cAccount" class="usd">
-                            <f-t-m-token-value :value="toUSD(cAccount ? cAccount.totalValue : 1)" with-price-currency no-currency />
+                            <native-token-value :value="toUSD(cAccount ? cAccount.totalValue : 1)" with-price-currency no-currency />
                         </div>
                     </div>
                 </f-card>
@@ -30,11 +30,11 @@
                     <div class="balance center-v">
                         <h3 class="h1">
                             <span v-show="'available' in cAssets">
-                                <f-t-m-token-value :value="cAssets.available" convert no-currency /> <span class="ftm">FTM</span>
+                                <native-token-value :value="cAssets.available" convert no-currency /> <span class="cam">{{NATIVE}}</span>
                             </span>
                         </h3>
                         <div v-show="'available' in cAssets" class="usd">
-                            <f-t-m-token-value :value="toUSD(cAssets.available)" with-price-currency no-currency />
+                            <native-token-value :value="toUSD(cAssets.available)" with-price-currency no-currency />
                         </div>
                     </div>
                 </f-card>
@@ -47,26 +47,26 @@
                                             <div class="row no-collapse">
                                                 <div class="col f-row-label">{{ $t('view_address_detail.available') }}</div>
                                                 <div class="col">
-                                                    <div v-show="'available' in cAssets">{{ toFTM(cAssets.available) }} FTM</div>
+                                                    <div v-show="'available' in cAssets">{{ toNative(cAssets.available) }} {{NATIVE}}</div>
                                                 </div>
                                             </div>
                     -->
                     <div class="row no-collapse">
                         <div class="col f-row-label">{{ $t('view_address_detail.delegated') }}</div>
                         <div class="col">
-                            <div v-show="'delegated' in cAssets"><f-t-m-token-value :value="cAssets.delegated" /></div>
+                            <div v-show="'delegated' in cAssets"><native-token-value :value="cAssets.delegated" /></div>
                         </div>
                     </div>
                     <div class="row no-collapse">
                         <div class="col f-row-label">{{ $t('view_address_detail.pending_rewards') }}</div>
                         <div class="col">
-                            <div v-show="'pending_rewards' in cAssets"><f-t-m-token-value :value="cAssets.pending_rewards" /></div>
+                            <div v-show="'pending_rewards' in cAssets"><native-token-value :value="cAssets.pending_rewards" /></div>
                         </div>
                     </div>
                     <div class="row no-collapse">
                         <div class="col f-row-label">{{ $t('view_address_detail.stashed_rewards') }}</div>
                         <div class="col">
-                            <div v-show="'stashed' in cAssets"><f-t-m-token-value :value="cAssets.stashed" convert /></div>
+                            <div v-show="'stashed' in cAssets"><native-token-value :value="cAssets.stashed" convert /></div>
                         </div>
                     </div>
                     <div class="row no-collapse">
@@ -74,7 +74,7 @@
                         <div class="col">
                             <div v-show="'claimed_rewards' in cAssets">
                                 -
-                                <!--{{ toFTM(cAssets.claimed_rewards, true) }} FTM-->
+                                <!--{{ toNative(cAssets.claimed_rewards, true) }} {{NATIVE}}-->
                             </div>
                         </div>
                     </div>
@@ -103,8 +103,8 @@
                         <div class="row">
                             <div class="col">
                                 <div class="num-block">
-                                    <h2 class="h3">{{ $t('view_address_detail.value_in_ftm') }}</h2>
-                                    <div class="num"><span v-show="cAccount">{{ toFTM(cAccount ? cAccount.totalValue : 1) }}</span></div>
+                                    <h2 class="h3">{{ $t('view_address_detail.value_in_cam') }}</h2>
+                                    <div class="num"><span v-show="cAccount">{{ toNative(cAccount ? cAccount.totalValue : 1) }}</span></div>
                                 </div>
                             </div>
                             <div class="col">
@@ -203,14 +203,14 @@
 <script>
     import FCard from "../components/core/FCard/FCard.vue";
     import gql from 'graphql-tag';
-    import { WEIToFTM, FTMToUSD } from "../utils/transactions.js";
+    import { NATIVE_TOKEN, WEIToNative, NativeToUSD } from "../utils/transactions.js";
     import FTransactionList from "../data-tables/FTransactionList.vue";
     import {formatHexToInt, timestampToDate} from "../filters.js";
     import FTabs from "@/components/core/FTabs/FTabs.vue";
     import FTab from "@/components/core/FTabs/FTab.vue";
     import AddressDelegationList from "@/data-tables/AddressDelegationList.vue";
     import AddressAssetList from "@/data-tables/AddressAssetList.vue";
-    import FTMTokenValue from "@/components/core/FTMTokenValue/FTMTokenValue.vue";
+    import NativeTokenValue from "@/components/core/NativeTokenValue/NativeTokenValue.vue";
     import Erc20TransationList from "@/data-tables/Erc20TransationList.vue";
     import Erc721TransationList from "@/data-tables/Erc721TransationList.vue";
     import Erc1155TransationList from "@/data-tables/Erc1155TransationList.vue";
@@ -220,7 +220,7 @@
             Erc1155TransationList,
             Erc721TransationList,
             Erc20TransationList,
-            FTMTokenValue,
+            NativeTokenValue,
             AddressAssetList,
             AddressDelegationList,
             FTab,
@@ -346,6 +346,7 @@
                 dAccountByAddressError: '',
                 validators: null,
                 loadDelegations: false,
+                NATIVE: NATIVE_TOKEN,
 /*
                 dAssetColumns: [
                     {
@@ -358,8 +359,8 @@
                         cssClass: 'align-end',
                     },
                     {
-                        name: 'valueInFTM',
-                        label: this.$t('view_address_detail.value_in_ftm'),
+                        name: 'valueInNative',
+                        label: this.$t('view_address_detail.value_in_cam'),
                         cssClass: 'align-end',
                     },
                     {
@@ -436,9 +437,9 @@
 
                             validatorIds.push(delegation.toStakerId);
 
-                            assets.delegated += (delegation ? WEIToFTM(delegation.amount) : 0);
-                            assets.pending_rewards += (delegation && delegation.pendingRewards ? WEIToFTM(delegation.pendingRewards.amount) : 0);
-                            assets.claimed_rewards += (delegation ? WEIToFTM(delegation.claimedReward) : 0);
+                            assets.delegated += (delegation ? WEIToNative(delegation.amount) : 0);
+                            assets.pending_rewards += (delegation && delegation.pendingRewards ? WEIToNative(delegation.pendingRewards.amount) : 0);
+                            assets.claimed_rewards += (delegation ? WEIToNative(delegation.claimedReward) : 0);
                         });
 
                         this.setValidators(validatorIds);
@@ -506,8 +507,8 @@
             getAssetItem(_assetName, _value) {
                 return {
                     asset: _assetName,
-                    balance: this.toFTM(_value),
-                    valueInFTM: this.toFTM(_value),
+                    balance: this.toNative(_value),
+                    valueInNative: this.toNative(_value),
                     valueInUSD: this.toUSD(_value)
                 }
             },
@@ -599,14 +600,14 @@
             },
 
             /**
-             * Convert value to FTM.
+             * Convert value to Native.
              *
              * @param {string|number} _value
              * @param {boolean} _isNumber Value is number.
              * @return {string}
              */
-            toFTM(_value, _isNumber) {
-                return _isNumber ? _value : WEIToFTM(_value);
+            toNative(_value, _isNumber) {
+                return _isNumber ? _value : WEIToNative(_value);
             },
 
             /**
@@ -616,7 +617,7 @@
              * @return {string}
              */
             toUSD(_value) {
-                return FTMToUSD(WEIToFTM(_value), this.$store.state.tokenPrice);
+                return NativeToUSD(WEIToNative(_value), this.$store.state.tokenPrice);
             },
 
             onErc20RecordsCount(_count) {
@@ -661,8 +662,8 @@
                 }
             },
 
-            WEIToFTM,
-            FTMToUSD,
+            WEIToNative,
+            NativeToUSD,
             timestampToDate,
         }
     }

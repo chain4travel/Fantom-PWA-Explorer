@@ -1,19 +1,23 @@
 import web3utils from 'web3-utils';
 
-const WEI_IN_FTM = 1000000000000000000;
+export const NATIVE_TOKEN = 'CAM';
+export const WRAPPED_NATIVE_TOKEN = 'WCAM';
+export const USD_TOKEN = 'USD';
+
+const WEI_IN_NATIVE = 1000000000000000000;
 
 /**
  * @return {number}
  */
-export function WEIToFTM(_value) {
-    return (_value / WEI_IN_FTM);
+export function WEIToNative(_value) {
+    return (_value / WEI_IN_NATIVE);
 }
 
 /**
  * @return {number}
  */
-export function FTMToWEI(_value) {
-    return _value * WEI_IN_FTM;
+export function NativeToWEI(_value) {
+    return _value * WEI_IN_NATIVE;
 }
 
 /**
@@ -21,7 +25,7 @@ export function FTMToWEI(_value) {
  * @param {number} [_tokenPrice]
  * @return {number}
  */
-export function FTMToUSD(_value, _tokenPrice = 0.002) {
+export function NativeToUSD(_value, _tokenPrice = 0.002) {
     return _value * _tokenPrice;
 }
 

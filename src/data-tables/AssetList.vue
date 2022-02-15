@@ -59,6 +59,7 @@ import FCryptoSymbol from '../components/core/FCryptoSymbol/FCryptoSymbol.vue';
 import { stringSort } from '../utils/array-sorting.js';
 import { formatNumberByLocale } from '../filters.js';
 import {MAX_TOKEN_DECIMALS_IN_TABLES} from "../plugins/defi/defi.js";
+import { NATIVE_TOKEN } from '@/utils/transactions.js';
 
 export default {
     name: 'AssetList',
@@ -149,7 +150,7 @@ export default {
                 $defi.init(),
             ]);
 
-            this.tokens = result[0].filter((_item) => _item.isActive && _item.symbol !== 'FTM');
+            this.tokens = result[0].filter((_item) => _item.isActive && _item.symbol !== NATIVE_TOKEN);
 
             this.$emit('records-count', this.tokens.length);
         },

@@ -171,7 +171,7 @@ export default {
                     label: `${this.$t('view_transaction_list.amount')}`,
                     itemProp: 'trx.amount',
                     formatter: (value, item) => {
-                        // return formatNumberByLocale(numToFixed(WEIToFTM(_value), 2), 2)
+                        // return formatNumberByLocale(numToFixed(WEIToNative(_value), 2), 2)
                         return this.$defi.fromTokenValue(value, item.trx.token);
                     },
                     width: '150px',

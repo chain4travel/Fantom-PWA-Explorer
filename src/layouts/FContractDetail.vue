@@ -1,11 +1,10 @@
 <template>
     <div class="f-contract-detail">
         <f-card class="f-data-layout">
-            <div class="row no-collapse">
+            <div class="row no-collapse" v-if="contract.deployedBy && contract.deployedBy.hash !== '0x0000000000000000000000000000000000000000000000000000000000000000'">
                 <div class="col-4 f-row-label">{{ $t("view_contract_detail.creator") }}</div>
                 <div class="col-8">
                     <router-link
-                        v-if="contract.deployedBy"
                         :to="{name: 'transaction-detail', params: {id: contract.deployedBy.hash}}"
                         :title="contract.deployedBy.hash"
                     >

@@ -22,6 +22,7 @@
 <script>
 import { formatNumberByLocale } from '@/filters.js';
 import FPlaceholder from '@/components/core/FPlaceholder/FPlaceholder.vue';
+import { NATIVE_TOKEN } from '@/utils/transactions.js';
 
 export default {
     name: 'FTokenValue',
@@ -60,7 +61,7 @@ export default {
         /** Replacement text for FPlaceholder. */
         replacementText: {
             type: String,
-            default: '10,000.00 FTM',
+            default: `10,000.00 ${NATIVE_TOKEN}`,
         },
         /** Currency symbol used in `formatNumberByLocale` function */
         numberCurrency: {

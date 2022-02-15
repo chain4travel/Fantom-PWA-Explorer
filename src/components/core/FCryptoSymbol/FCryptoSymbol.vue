@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import ftmIcon from '../../../assets/svg/tokens/FTM.svg';
-import wftmIcon from '../../../assets/svg/tokens/wFTM.svg';
-import fusdIcon from '../../../assets/svg/tokens/fUSD.svg';
+import {NATIVE_TOKEN, WRAPPED_NATIVE_TOKEN} from '../../../utils/transactions';
+import nativeIcon from '../../../assets/svg/tokens/NATIVE.svg';
+import wrappedNativeIcon from '../../../assets/svg/tokens/WNATIVE.svg';
 
 /**
  * Render crypto logo and name by given token.
@@ -55,12 +55,10 @@ export default {
 
             if (token) {
                 switch (token.symbol) {
-                    case 'FTM':
-                        return ftmIcon;
-                    case 'WFTM':
-                        return wftmIcon;
-                    case 'FUSD':
-                        return fusdIcon;
+                    case NATIVE_TOKEN:
+                        return nativeIcon;
+                    case WRAPPED_NATIVE_TOKEN:
+                        return wrappedNativeIcon;
                 }
             }
 

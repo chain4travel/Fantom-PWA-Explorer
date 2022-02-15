@@ -14,19 +14,7 @@
                 fixed-header
                 v-bind="{...$attrs, ...$props}"
                 class="f-data-table-body-bg-color"
-                @fetch-more="onFetchMore"
             >
-<!--
-                <template v-slot:column-created="{ value, column }">
-                    <template v-if="column">
-                        {{ value | formatDate }}
-                    </template>
-                    <template v-else>
-                        {{ value | formatDate }}
-                    </template>
-                </template>
--->
-
                 <template v-slot:column-hash="{ value, column }">
                     <div v-if="column" class="row no-collapse no-vert-col-padding">
                         <div class="col-5 f-row-label">{{ column.label }}</div>
@@ -40,104 +28,6 @@
                         </div>
                     </template>
                 </template>
-
-<!--
-                <template v-slot:column-block="{ value, column }">
-                    <div v-if="column" class="row no-collapse no-vert-col-padding">
-                        <div class="col-5 f-row-label">{{ column.label }}</div>
-                        <div class="col"><router-link :to="{name: 'block-detail', params: {id: value}}" :title="value">{{value}}</router-link></div>
-                    </div>
-                    <template v-else>
-                        <router-link :to="{name: 'block-detail', params: {id: value}}" :title="value">{{value}}</router-link>
-                    </template>
-                </template>
--->
-
-                <template v-slot:column-timestamp="{ value, column }">
-                    <div v-if="column" class="row no-collapse no-vert-col-padding">
-                        <div class="col-5 f-row-label">{{ column.label }}</div>
-                        <div class="col">
-                            <timeago :datetime="timestampToDate(value)" :auto-update="1" :converter-options="{includeSeconds: true}"></timeago>
-                        </div>
-                    </div>
-                    <template v-else>
-                        <timeago :datetime="timestampToDate(value)" :auto-update="1" :converter-options="{includeSeconds: true}"></timeago>
-                    </template>
-                </template>
-
-                <template v-slot:column-address="{ value, column }">
-                    <div v-if="column" class="row no-collapse no-vert-col-padding">
-                        <div class="col-5 f-row-label">{{ column.label }}</div>
-                        <div class="col mono"><router-link :to="{name: 'address-detail', params: {id: value}}" :title="value">{{ value | formatHash }}</router-link></div>
-                    </div>
-                    <template v-else>
-                        <router-link :to="{name: 'address-detail', params: {id: value}}" :title="value">{{ value | formatHash }}</router-link>
-                    </template>
-                </template>
-
-                <template v-slot:column-from="{ value, column }">
-                    <div v-if="column" class="row no-collapse no-vert-col-padding">
-                        <div class="col-5 f-row-label">{{ column.label }}</div>
-                        <div class="col mono"><router-link :to="{name: 'address-detail', params: {id: value}}" :title="value">{{ value | formatHash }}</router-link></div>
-                    </div>
-                    <template v-else>
-                        <router-link :to="{name: 'address-detail', params: {id: value}}" :title="value">{{ value | formatHash }}</router-link>
-                    </template>
-                </template>
-
-                <template v-slot:column-to="{ value, column }">
-                    <div v-if="column" class="row no-collapse no-vert-col-padding">
-                        <div class="col-5 f-row-label">{{ column.label }}</div>
-                        <div class="col mono"><router-link :to="{name: 'address-detail', params: {id: value}}" :title="value">{{ value | formatHash }}</router-link></div>
-                    </div>
-                    <template v-else>
-                        <router-link :to="{name: 'address-detail', params: {id: value}}" :title="value">{{ value | formatHash }}</router-link>
-                    </template>
-                </template>
-
-                <template v-slot:column-amount="{ value, item, column }">
-                    <div v-if="column" class="row no-collapse no-vert-col-padding">
-                        <div class="col-5 f-row-label">{{ column.label }}</div>
-                        <div class="col">
-                            <template v-if="addressCol">
-                                <f-account-transaction-amount
-                                    :address="addressCol"
-                                    :from="getFrom(item)"
-                                    :to="getTo(item)"
-                                    :amount="value"
-                                />
-                            </template>
-                            <template v-else>
-                                <f-token-value :value="value" :decimals="2" :use-placeholder="false" no-currency />
-                            </template>
-                        </div>
-                    </div>
-                    <template v-else>
-                        <template v-if="addressCol">
-                            <f-account-transaction-amount
-                                :address="addressCol"
-                                :from="getFrom(item)"
-                                :to="getTo(item)"
-                                :amount="value"
-                            />
-                        </template>
-                        <template v-else>
-                            <f-token-value :value="value" :decimals="2" :use-placeholder="false" no-currency />
-                        </template>
-                    </template>
-                </template>
-
-                <!--
-                            <template v-slot:column-fee="{ value, column }">
-                                <div v-if="column" class="row no-collapse no-vert-col-padding">
-                                    <div class="col-5 f-row-label">{{ column.label }}</div>
-                                    <div class="col">{{ WEIToNative(value | formatHexToInt) }}</div>
-                                </div>
-                                <template v-else>
-                                    {{ WEIToNative(value | formatHexToInt) }}
-                                </template>
-                            </template>
-                -->
             </f-data-table>
         </template>
 
@@ -363,7 +253,7 @@
 /*
                     {
                         name: 'fee',
-                        label: `${this.$t('view_transaction_list.fee')} (${NATIVE_TOKEN}))`,
+                        label: `${this.$t('view_transaction_list.fee')} (${NATIVE_TOKEN})`,
                         itemProp: 'gasUsed',
                         width: '130px'
                     }

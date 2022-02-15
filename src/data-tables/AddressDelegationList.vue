@@ -85,7 +85,7 @@ import FDataTable from '@/components/core/FDataTable/FDataTable.vue';
 import gql from 'graphql-tag';
 import { cloneObject } from '@/utils';
 import { formatDate, formatHexToInt, timestampToDate } from '@/filters.js';
-import { WEIToFTM } from '@/utils/transactions.js';
+import { NATIVE_TOKEN, WEIToNative } from '@/utils/transactions.js';
 import FTokenValue from "@/components/core/FTokenValue/FTokenValue.vue";
 // import { formatHexToInt } from '@/filters.js';
 
@@ -205,17 +205,17 @@ export default {
                 },
                 {
                     name: 'amount',
-                    label: 'Amount (FTM)',
+                    label: `Amount (${NATIVE_TOKEN})`,
                     itemProp: 'delegation.amount',
-                    formatter: (_value) => WEIToFTM(_value),
+                    formatter: (_value) => WEIToNative(_value),
                     width: '160px',
                     cssClass: 'align-end',
                 },
                 {
                     name: 'rewards',
-                    label: 'Pending Rewards (FTM)',
+                    label: `Pending Rewards (${NATIVE_TOKEN})`,
                     itemProp: 'delegation.pendingRewards',
-                    formatter: (_value) => (_value ? WEIToFTM(_value.amount) : '-'),
+                    formatter: (_value) => (_value ? WEIToNative(_value.amount) : '-'),
                     width: '200px',
                     cssClass: 'align-end',
                 },

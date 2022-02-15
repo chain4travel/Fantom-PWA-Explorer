@@ -48,7 +48,7 @@
     // import FDataTable from "../components/FDataTable.vue";
     import FDataTable from "../components/core/FDataTable/FDataTable.vue";
     import gql from 'graphql-tag';
-    import { WEIToFTM } from "../utils/transactions.js";
+    import { NATIVE_TOKEN, WEIToNative } from "../utils/transactions.js";
     import {timestampToDate, formatDate, formatHexToInt} from "../filters.js";
     import {cloneObject} from "@/utils";
 
@@ -155,9 +155,9 @@
                     },
                     {
                         name: 'fee',
-                        label: `${this.$t('view_block_list.fee')} (FTM)`,
+                        label: `${this.$t('view_block_list.fee')} (${NATIVE_TOKEN})`,
                         itemProp: 'block.gasUsed',
-                        formatter: (_value) => WEIToFTM(_value * (this.gasPrice || 1500000000)),
+                        formatter: (_value) => WEIToNative(_value * (this.gasPrice || 1500000000)),
                         // width: '80px'
                     },
                     {
@@ -205,7 +205,7 @@
                 }
             },
 
-            WEIToFTM,
+            WEIToNative,
             timestampToDate
         }
     }

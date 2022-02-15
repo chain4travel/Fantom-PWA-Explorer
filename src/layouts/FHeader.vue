@@ -3,7 +3,7 @@
         <div class="narrow-container">
             <div class="row no-collapse align-items-center">
                 <div class="col-2">
-                    <router-link to="/" class="logo" :aria-label="$t('view_home.back_to_home')"><img src="/globe-logo.png" alt="" class="not-fluid"></router-link>
+                    <router-link to="/" class="logo" :aria-label="$t('view_home.back_to_home')"><img height="42px" src="/camino-logo.png" alt="" class="not-fluid"></router-link>
                 </div>
                 <div class="col right-col">
                     <f-navigation
@@ -212,7 +212,8 @@
 
         .logo {
             > img {
-                max-height: 36px;
+                max-height: 42px;
+                display: block;
                 margin-bottom: 0 !important;
                 transition: opacity $transition-length ease;
             }

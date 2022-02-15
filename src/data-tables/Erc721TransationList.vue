@@ -103,7 +103,7 @@ import FDataTable from '../components/core/FDataTable/FDataTable.vue';
 import {formatHexToInt, timestampToDate} from "@/filters.js";
 import {cloneObject, getNestedProp} from '@/utils';
 import gql from "graphql-tag";
-// import {WEIToFTM} from "@/utils/transactions.js";
+// import {WEIToNative} from "@/utils/transactions.js";
 import FAccountTransactionAmount from "@/components/FAccountTransactionAmount.vue";
 import FTokenValue from "@/components/core/FTokenValue/FTokenValue.vue";
 // import { stringSort } from '../utils/array-sorting.js';
