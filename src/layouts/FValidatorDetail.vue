@@ -7,8 +7,8 @@
                     <div class="col">
                         <div v-show="cStakerName">
                             <div class="validator-img">
-                                <img v-if="cStakerLogoUrl"  :src="cStakerLogoUrl" :alt="cStakerName" class="not-fluid">
-                                <img v-else src="/img/camino-logo.png" alt="camino logo" class="not-fluid">
+                                <img v-if="cStakerLogoUrl"  :src="cStakerLogoUrl" :alt="cStakerName" class="not-fluid" />
+                                <img v-else src="/img/icons/question-mark.png" alt="unknown" class="icon not-fluid" />
                             </div>
 
                             {{ cStakerName }}

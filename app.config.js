@@ -1,9 +1,9 @@
 const appConfig = {
     // app title
-    name: "Globe Explorer",
+    name: "Camino Explorer",
     // app description
     description:
-        "Globe Explorer allows you to explore and search the Globe blockchain for transactions, addresses and blocks",
+        "Camino Explorer allows you to explore and search the Camino blockchain for transactions, addresses and blocks",
     // app keywords
     keywords: "camino, explorer, search, blockchain, crypto, currency",
     // apollo client settings
@@ -33,7 +33,7 @@ const appConfig = {
     // pwa settings
     pwa: {
         // name used in pwa manifest
-        name: "Globe Explorer"
+        name: "Camino Explorer"
     },
     // default options for production build
     build: {

@@ -1,6 +1,6 @@
-# Globe PWA Explorer
+# Camino PWA Explorer
 
-JavaScript and Vue based Globe pwa explorer.
+JavaScript and Vue based Camino pwa explorer.
 
 We are using:
 * Node / NPM
