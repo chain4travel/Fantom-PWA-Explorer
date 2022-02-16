@@ -51,8 +51,10 @@ export default {
         },
     },
 
-    data: {
-        NATIVE: NATIVE_TOKEN,
+    data() {
+        return {
+            NATIVE: NATIVE_TOKEN,
+        }
     }
 };
 </script>
