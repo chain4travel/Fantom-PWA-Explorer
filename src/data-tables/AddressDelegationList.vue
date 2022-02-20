@@ -18,13 +18,13 @@
                         <div class="col-5 f-row-label">{{ column.label }}</div>
                         <div class="col break-word">
                             <template v-if="value">
-                                {{ value.stakerInfo && value.stakerInfo.name ? value.stakerInfo.name : 'Unknown' }},
+                                {{ value.validatorInfo && value.validatorInfo.name ? value.validatorInfo.name : 'Unknown' }},
                                 {{ value.id | formatHexToInt }}
                             </template>
                         </div>
                     </div>
                     <template v-else-if="value">
-                        {{ value.stakerInfo && value.stakerInfo.name ? value.stakerInfo.name : 'Unknown' }},
+                        {{ value.validatorInfo && value.validatorInfo.name ? value.validatorInfo.name : 'Unknown' }},
                         {{ value.id | formatHexToInt }}
                     </template>
                 </template>
@@ -264,7 +264,7 @@ export default {
                         stakers {
                             id
                             stakerAddress
-                            stakerInfo {
+                            validatorInfo {
                                 name
                                 website
                                 contact

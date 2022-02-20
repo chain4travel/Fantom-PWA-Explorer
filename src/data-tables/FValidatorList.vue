@@ -15,14 +15,14 @@
                         <div class="col-6 f-row-label">{{ column.label }}</div>
                         <div class="col break-word">
                             <div class="validator-img">
-                                <img v-if="value"  :src="value" :alt="item.stakerInfo.name" class="not-fluid">
+                                <img v-if="value"  :src="value" :alt="item.validatorInfo.name" class="not-fluid">
                                 <img v-else src="/img/icons/question-mark.png" alt="camino logo" class="not-fluid">
                             </div>
                         </div>
                     </div>
                     <template v-else>
                         <div class="validator-img">
-                            <img v-if="value"  :src="value" :alt="item.stakerInfo.name" class="not-fluid">
+                            <img v-if="value"  :src="value" :alt="item.validatorInfo.name" class="not-fluid">
                             <img v-else src="/img/icons/question-mark.png" alt="camino logo" class="not-fluid">
                         </div>
                     </template>
@@ -33,14 +33,14 @@
                         <div class="col-6 f-row-label">{{ column.label }}</div>
                         <div class="col break-word">
                             {{ value }}
-                            <a v-if="(item.stakerInfo ? item.stakerInfo.website || item.stakerInfo.contact : '')" :href="(item.stakerInfo ? item.stakerInfo.website || item.stakerInfo.contact : '')" target="_blank" rel="nofollow" class="validator-website">
+                            <a v-if="(item.validatorInfo ? item.validatorInfo.website || item.validatorInfo.contact : '')" :href="(item.validatorInfo ? item.validatorInfo.website || item.validatorInfo.contact : '')" target="_blank" rel="nofollow" class="validator-website">
                                 <icon data="@/assets/svg/external-link-alt.svg"></icon>
                             </a>
                         </div>
                     </div>
                     <template v-else>
                         {{ value }}
-                        <a v-if="(item.stakerInfo ? item.stakerInfo.website || item.stakerInfo.contact : '')" :href="(item.stakerInfo ? item.stakerInfo.website || item.stakerInfo.contact : '')" target="_blank" rel="nofollow" class="validator-website">
+                        <a v-if="(item.validatorInfo ? item.validatorInfo.website || item.validatorInfo.contact : '')" :href="(item.validatorInfo ? item.validatorInfo.website || item.validatorInfo.contact : '')" target="_blank" rel="nofollow" class="validator-website">
                             <icon data="@/assets/svg/external-link-alt.svg"></icon>
                         </a>
                     </template>
@@ -73,7 +73,7 @@
                         </div>
                     </div>
                     <template v-else>
-                        <a v-if="value || (item.stakerInfo && item.stakerInfo.contact)" :href="value || (item.stakerInfo && item.stakerInfo.contact)" target="_blank" rel="nofollow">
+                        <a v-if="value || (item.validatorInfo && item.validatorInfo.contact)" :href="value || (item.validatorInfo && item.validatorInfo.contact)" target="_blank" rel="nofollow">
                             <icon data="@/assets/svg/external-link-alt.svg"></icon>
                         </a>
                         <template v-else>-</template>
@@ -132,7 +132,7 @@
                             totalStake
                             delegatedMe
                             downtime
-                            stakerInfo {
+                            validatorInfo {
                                 name
                                 website
                                 contact
@@ -163,12 +163,12 @@
                             totals.totalDelegated += parseFloat(numToFixed(WEIToNative(_item.delegatedMe), 0));
                             totals.totalStaked += parseFloat(numToFixed(WEIToNative(_item.totalStake), 0));
 
-                            if (!_item.stakerInfo) {
-                                _item.stakerInfo = {};
+                            if (!_item.validatorInfo) {
+                                _item.validatorInfo = {};
                             }
 
-                            if (!_item.stakerInfo.name) {
-                                _item.stakerInfo.name = tUnknown;
+                            if (!_item.validatorInfo.name) {
+                                _item.validatorInfo.name = tUnknown;
                             }
 
                             if (_item.isOffline && !_item.isCheater) {
@@ -248,14 +248,14 @@
                     {
                         name: 'logo',
                         label: this.$t('view_validator_list.logo'),
-                        itemProp: 'stakerInfo.logoUrl',
+                        itemProp: 'validatorInfo.logoUrl',
                         cssClass: 'align-center',
                         width: '80px'
                     },
                     {
                         name: 'name',
                         label: this.$t('view_validator_list.name'),
-                        itemProp: 'stakerInfo.name',
+                        itemProp: 'validatorInfo.name',
                         sortFunc: sortByLocaleString,
                         width: '200px',
                     },
@@ -306,7 +306,7 @@
                     {
                         name: 'link',
                         label: this.$t('view_validator_list.link'),
-                        itemProp: 'stakerInfo.website',
+                        itemProp: 'validatorInfo.website',
                         css: {textAlign: 'center'},
                         width: '50px'
                     }

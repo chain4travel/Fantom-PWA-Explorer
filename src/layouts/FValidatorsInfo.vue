@@ -58,7 +58,7 @@
                         <div class="row no-collapse">
                             <div class="col-5 f-row-label">{{ $t('view_validators_info.end_time') }}</div>
                             <div class="col">
-                                <div v-show="'endTime' in cEpoch">
+                                <div v-if="'endTime' in cEpoch">
                                     <timeago :datetime="timestampToDate(cEpoch.endTime)" :auto-update="1" :converter-options="{addSuffix: true}"></timeago>
                                 </div>
                             </div>

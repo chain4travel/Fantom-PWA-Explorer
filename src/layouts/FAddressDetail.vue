@@ -543,7 +543,7 @@
 
                     this.validators = data.filter((_validator) => {
                         if (_validatorIds.indexOf(_validator.id) > -1) {
-                            _validator.name = `${_validator.stakerInfo ? _validator.stakerInfo.name : this.$t('unknown')}, ${parseInt(_validator.id, 16)}`;
+                            _validator.name = `${_validator.validatorInfo ? _validator.validatorInfo.name : this.$t('unknown')}, ${parseInt(_validator.id, 16)}`;
                             return true;
                         }
 
@@ -559,7 +559,7 @@
                             stakers {
                                 id
                                 stakerAddress
-                                stakerInfo {
+                                validatorInfo {
                                     name
                                     website
                                     contact
@@ -581,7 +581,7 @@
                             staker(id: $id) {
                                 id
                                 stakerAddress
-                                stakerInfo {
+                                validatorInfo {
                                     name
                                     website
                                     contact

@@ -200,7 +200,7 @@
                             lockedUntil
                             isActive
                             isOffline
-                            stakerInfo {
+                            validatorInfo {
                                 name
                                 website
                                 contact
@@ -236,19 +236,19 @@
             cStakerName() {
                 const {staker} = this;
 
-                return staker && staker.stakerInfo && staker.stakerInfo.name ? staker.stakerInfo.name : this.$t('view_validator_list.unknown');
+                return staker && staker.validatorInfo && staker.validatorInfo.name ? staker.validatorInfo.name : this.$t('view_validator_list.unknown');
             },
 
             cStakerWebsite() {
                 const {staker} = this;
 
-                return staker && staker.stakerInfo ? staker.stakerInfo.website || staker.stakerInfo.contact : '';
+                return staker && staker.validatorInfo ? staker.validatorInfo.website || staker.validatorInfo.contact : '';
             },
 
             cStakerLogoUrl() {
                 const {staker} = this;
 
-                return staker && staker.stakerInfo && staker.stakerInfo.logoUrl ? staker.stakerInfo.logoUrl : '';
+                return staker && staker.validatorInfo && staker.validatorInfo.logoUrl ? staker.validatorInfo.logoUrl : '';
             },
 
             cDelegationItems() {
