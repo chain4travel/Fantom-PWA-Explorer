@@ -124,7 +124,7 @@ export default {
         formatTokenValue(_value) {
             const { cDecimals } = this;
 
-            return _value === 0
+            return _value == undefined
                 ? 0
                 : formatNumberByLocale(parseFloat(_value).toFixed(cDecimals), cDecimals, this.numberCurrency);
         },

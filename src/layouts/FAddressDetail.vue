@@ -543,7 +543,7 @@
 
                     this.validators = data.filter((_validator) => {
                         if (_validatorIds.indexOf(_validator.id) > -1) {
-                            _validator.name = `${_validator.validatorInfo ? _validator.validatorInfo.name : this.$t('unknown')}, ${parseInt(_validator.id, 16)}`;
+                            _validator.name = `${_validator.validatorInfo && _validator.validatorInfo.name ? _validator.validatorInfo.name : this.$t('unknown')}, ${parseInt(_validator.id, 16)}`;
                             return true;
                         }
 
